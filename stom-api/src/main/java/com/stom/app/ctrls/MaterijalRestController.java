@@ -17,6 +17,7 @@ import com.stom.app.jpa.Materijal;
 import com.stom.app.reps.MaterijalRepository;
 
 @RestController
+@CrossOrigin
 public class MaterijalRestController {
 	
 	@Autowired
@@ -45,7 +46,6 @@ public class MaterijalRestController {
         return new ResponseEntity(obj, HttpStatus.OK);
     }
 		
-	@CrossOrigin
 	@RequestMapping(value = "materijal", method = RequestMethod.POST)
     public ResponseEntity<Void> insertMaterijal(@RequestBody Materijal obj) {
         if (!materijalRepository.existsById(obj.getId())) {
@@ -55,7 +55,6 @@ public class MaterijalRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "materijal/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> updateMaterijal(@PathVariable("id") int id, @RequestBody Materijal obj) {
         if (!materijalRepository.existsById(id)) {
@@ -65,7 +64,6 @@ public class MaterijalRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "materijal/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteMaterijal(@PathVariable("id") Integer id) {
         if (!materijalRepository.existsById(id)) {

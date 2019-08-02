@@ -20,6 +20,7 @@ import com.stom.app.reps.PlanRadaRepository;
 import com.stom.app.reps.StavkaPlanaRadaRepository;
 
 @RestController
+@CrossOrigin
 public class StavkaPlanaRadaRestController {
 	
 	@Autowired
@@ -66,8 +67,7 @@ public class StavkaPlanaRadaRestController {
 		Optional<StavkaPlanaRada> obj = stavkaPlanaRadaRepository.findById(id);
 		return new ResponseEntity(obj, HttpStatus.OK);
 	}
-		
-	@CrossOrigin
+	
 	@RequestMapping(value = "stavkaPlanaRada", method = RequestMethod.POST)
     public ResponseEntity<Void> insertStavkaPlanaRada(@RequestBody StavkaPlanaRada obj) {
         if (stavkaPlanaRadaRepository.existsById(obj.getId())) {
@@ -76,8 +76,7 @@ public class StavkaPlanaRadaRestController {
 		stavkaPlanaRadaRepository.save(obj);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
-	
-	@CrossOrigin
+
 	@RequestMapping(value = "stavkaPlanaRada/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> updateStavkaPlanaRada(@PathVariable("id") Integer id, @RequestBody StavkaPlanaRada obj) {
         if (!stavkaPlanaRadaRepository.existsById(id)) { 
@@ -86,8 +85,7 @@ public class StavkaPlanaRadaRestController {
         stavkaPlanaRadaRepository.save(obj);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
-	
-	@CrossOrigin
+
 	@RequestMapping(value="stavkaPlanaRada/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteStavkaPlanaRada(@PathVariable("id") int id) {
         if (!stavkaPlanaRadaRepository.existsById(id)) { 

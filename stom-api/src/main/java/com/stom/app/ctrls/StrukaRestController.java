@@ -17,6 +17,7 @@ import com.stom.app.jpa.Struka;
 import com.stom.app.reps.StrukaRepository;
 
 @RestController
+@CrossOrigin
 public class StrukaRestController {
 	
 	@Autowired
@@ -44,8 +45,7 @@ public class StrukaRestController {
         Optional<Struka> obj = strukaRepository.findById(id);
         return new ResponseEntity(obj, HttpStatus.OK);
     }
-		
-	@CrossOrigin
+
 	@RequestMapping(value = "struka", method = RequestMethod.POST)
     public ResponseEntity<Void> insertStruka(@RequestBody Struka obj) {
         if (strukaRepository.existsById(obj.getId())) {
@@ -54,8 +54,7 @@ public class StrukaRestController {
 		strukaRepository.save(obj);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
-	
-	@CrossOrigin
+
 	@RequestMapping(value = "struka/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> updateStruka(@PathVariable("id") Integer id, @RequestBody Struka obj) {
         if (!strukaRepository.existsById(obj.getId())) {
@@ -65,7 +64,6 @@ public class StrukaRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "struka/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteStruka(@PathVariable("id") Integer id) {
         if (!strukaRepository.existsById(id)) {

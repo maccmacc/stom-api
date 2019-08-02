@@ -19,6 +19,7 @@ import com.stom.app.reps.PorudzbinaRepository;
 import com.stom.app.reps.StavkaPorudzbineRepository;
 
 @RestController
+@CrossOrigin
 public class StavkaPorudzbineRestController {
 	
 	@Autowired
@@ -66,7 +67,6 @@ public class StavkaPorudzbineRestController {
 		return stavkaPorudzbineRepository.findByPorudzbina(p);
 	}
 	
-	@CrossOrigin
 	@RequestMapping(value="stavkaPorudzbine", method=RequestMethod.POST)
 	public ResponseEntity<Void> insertStavkaPorudzbine(@RequestBody StavkaPorudzbine obj){
 		if (stavkaPorudzbineRepository.existsById(obj.getId())){
@@ -80,7 +80,6 @@ public class StavkaPorudzbineRestController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-	@CrossOrigin
 	@RequestMapping(value="stavkaPorudzbine/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> updateStavkaPorudzbine(@PathVariable("id") Integer id, @RequestBody StavkaPorudzbine obj){
 		if (!stavkaPorudzbineRepository.existsById(id)){
@@ -93,8 +92,7 @@ public class StavkaPorudzbineRestController {
 		porudzbinaRepository.save(izBaze);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
-		
-	@CrossOrigin
+
 	@RequestMapping(value="stavkaPorudzbine/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteStavkaPorudzbine(@PathVariable("id") int id){
 		if (!stavkaPorudzbineRepository.existsById(id)) {

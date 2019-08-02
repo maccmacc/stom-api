@@ -17,6 +17,7 @@ import com.stom.app.jpa.Isplata;
 import com.stom.app.reps.IsplataRepository;
 
 @RestController
+@CrossOrigin
 public class IsplataRestController {
 	
 	@Autowired
@@ -47,7 +48,6 @@ public class IsplataRestController {
         return new ResponseEntity(obj, HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "isplata", method = RequestMethod.POST)
     public ResponseEntity<Void> insertIsplata(@RequestBody Isplata obj) {
         if (isplataRepository.existsById(obj.getId())) { 
@@ -57,7 +57,6 @@ public class IsplataRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "isplata/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> updateIsplata(@PathVariable("id") int id, @RequestBody Isplata obj) {
         if (!isplataRepository.existsById(id)) {
@@ -67,7 +66,6 @@ public class IsplataRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "isplata/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteIsplata(@PathVariable("id") Integer id) {
         if (!isplataRepository.existsById(id)) {

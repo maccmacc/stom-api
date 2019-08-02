@@ -17,6 +17,7 @@ import com.stom.app.jpa.Dobavljac;
 import com.stom.app.reps.DobavljacRepository;
 
 @RestController
+@CrossOrigin
 public class DobavljacRestController {
 	
 	@Autowired
@@ -46,7 +47,6 @@ public class DobavljacRestController {
         return new ResponseEntity(obj, HttpStatus.OK);
     }
 		
-	@CrossOrigin
 	@RequestMapping(value = "dobavljac", method = RequestMethod.POST)
     public ResponseEntity<Void> insertDobavljac(@RequestBody Dobavljac obj) {
         if (dobavljacRepository.existsById(obj.getId())) { 
@@ -56,7 +56,6 @@ public class DobavljacRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "dobavljac/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> updateDobavljac(@PathVariable("id") Integer id, @RequestBody Dobavljac obj) {
         if (!dobavljacRepository.existsById(id)) {
@@ -66,7 +65,6 @@ public class DobavljacRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "dobavljac/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteDobavljac(@PathVariable("id") Integer id) {
         if (!dobavljacRepository.existsById(id)) {
@@ -75,5 +73,4 @@ public class DobavljacRestController {
 		dobavljacRepository.deleteById(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
-
 }

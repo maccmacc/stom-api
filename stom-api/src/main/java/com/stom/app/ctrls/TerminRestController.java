@@ -47,7 +47,6 @@ public class TerminRestController {
         return new ResponseEntity(obj, HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "termin", method = RequestMethod.POST)
     public ResponseEntity<Void> insertTermin(@RequestBody Termin obj) {
         if (terminRepository.existsById(obj.getId())) {
@@ -57,7 +56,6 @@ public class TerminRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "termin/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> updateTermin(@PathVariable("id") Integer id, @RequestBody Termin obj) {
         if (!terminRepository.existsById(id)) {
@@ -67,7 +65,6 @@ public class TerminRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "termin/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteTermin(@PathVariable("id") Integer id) {
         if (!terminRepository.existsById(id)) {

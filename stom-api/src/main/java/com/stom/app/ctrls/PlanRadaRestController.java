@@ -20,6 +20,7 @@ import com.stom.app.reps.PacijentRepository;
 import com.stom.app.reps.PlanRadaRepository;
 
 @RestController
+@CrossOrigin
 public class PlanRadaRestController {
 	
 	@Autowired
@@ -57,7 +58,6 @@ public class PlanRadaRestController {
 		return planRadaRepository.findByPacijent(pacijent);
 	}
 		
-	@CrossOrigin
 	@RequestMapping(value = "planRada", method = RequestMethod.POST)
     public ResponseEntity<Void> insertPlanRada(@RequestBody PlanRada obj) {
         if (planRadaRepository.existsById(obj.getId())) {
@@ -67,7 +67,6 @@ public class PlanRadaRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "planRada/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> updatePlanRada(@PathVariable("id") Integer id, @RequestBody PlanRada obj) {
         if (!planRadaRepository.existsById(id)) {
@@ -77,7 +76,6 @@ public class PlanRadaRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "planRada/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deletePlanRada(@PathVariable("id") Integer id) {
         if (!planRadaRepository.existsById(id)) {

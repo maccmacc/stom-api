@@ -18,6 +18,7 @@ import com.stom.app.reps.PorudzbinaRepository;
 
 
 @RestController
+@CrossOrigin
 public class PorudzbinaRestController {
 	
 	@Autowired
@@ -46,7 +47,6 @@ public class PorudzbinaRestController {
 		return new ResponseEntity(obj,HttpStatus.OK);
 	}
 
-	@CrossOrigin
 	@RequestMapping(value="porudzbina", method=RequestMethod.POST)
 	public ResponseEntity<Void> insertPorudzbina(@RequestBody Porudzbina obj){
 		if (porudzbinaRepository.existsById(obj.getId())){
@@ -56,7 +56,6 @@ public class PorudzbinaRestController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-	@CrossOrigin
 	@RequestMapping(value="porudzbina/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> updatePorudzbina(@PathVariable("id") Integer id, @RequestBody Porudzbina obj){
 		if(!porudzbinaRepository.existsById(id)){
@@ -66,7 +65,6 @@ public class PorudzbinaRestController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-	@CrossOrigin
 	@RequestMapping(value="porudzbina/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> deletePorudzbina(@PathVariable("id") int id) {		
 		if(!porudzbinaRepository.existsById(id)){

@@ -17,6 +17,7 @@ import com.stom.app.jpa.RadnoMjesto;
 import com.stom.app.reps.RadnoMjestoRepository;
 
 @RestController
+@CrossOrigin
 public class RadnoMjestoRestController {
 	
 	@Autowired
@@ -45,7 +46,6 @@ public class RadnoMjestoRestController {
         return new ResponseEntity(obj, HttpStatus.OK);
     }
 		
-	@CrossOrigin
 	@RequestMapping(value = "radnoMjesto", method = RequestMethod.POST)
     public ResponseEntity<Void> inserRadnoMjesto(@RequestBody RadnoMjesto obj) {
         if (radnoMjestoRepository.existsById(obj.getId())) {
@@ -55,7 +55,6 @@ public class RadnoMjestoRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "radnoMjesto/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> updateRadnoMjesto(@PathVariable("id") int id, @RequestBody RadnoMjesto obj) {
         if (!radnoMjestoRepository.existsById(id)) {
@@ -65,7 +64,6 @@ public class RadnoMjestoRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "radnoMjesto/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteRadnoMjesto(@PathVariable("id") Integer id) {
         if (!radnoMjestoRepository.existsById(id)) {

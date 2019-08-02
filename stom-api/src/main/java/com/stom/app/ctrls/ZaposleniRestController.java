@@ -17,6 +17,7 @@ import com.stom.app.jpa.Zaposleni;
 import com.stom.app.reps.ZaposleniRepository;
 
 @RestController
+@CrossOrigin
 public class ZaposleniRestController {
 	
 	@Autowired
@@ -45,7 +46,6 @@ public class ZaposleniRestController {
         return new ResponseEntity(obj, HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "zaposleni", method = RequestMethod.POST)
     public ResponseEntity<Void> insertZaposleni(@RequestBody Zaposleni obj) {
         if (zaposleniRepository.existsById(obj.getId())) {
@@ -55,7 +55,6 @@ public class ZaposleniRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 	
-	@CrossOrigin
 	@RequestMapping(value = "zaposleni/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> updateZaposleni(@PathVariable("id") int id, @RequestBody Zaposleni obj) {
         if (!zaposleniRepository.existsById(obj.getId())) {
@@ -65,7 +64,6 @@ public class ZaposleniRestController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }	
 	
-	@CrossOrigin
 	@RequestMapping(value = "zaposleni/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteZaposleni(@PathVariable("id") Integer id) {
         if (!zaposleniRepository.existsById(id)) {
