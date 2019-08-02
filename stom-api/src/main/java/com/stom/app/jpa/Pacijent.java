@@ -75,10 +75,6 @@ public class Pacijent implements Serializable {
 	@Column(name="datum_upisa")
 	private Date datumUpisa;
 
-	
-	@Transient
-	private BigDecimal ukupno;
-
 	public Pacijent() {
 	}
 
@@ -272,18 +268,6 @@ public class Pacijent implements Serializable {
 
 	public String getLookup() {
 		return ime + " " + prezime;
-	}
-	
-	public BigDecimal getUkupno() {
-		double u = 0;
-		if (izvrsenaIntervencijas != null) {
-			Iterator<IzvrsenaIntervencija> it = izvrsenaIntervencijas.iterator();
-			while (it.hasNext()) {
-				IzvrsenaIntervencija ii = it.next();
-				u = u + ii.getPlaceno().doubleValue(); 
-			}
-		}
-		return new BigDecimal(u).setScale(2, BigDecimal.ROUND_HALF_EVEN);
 	}
 	
 	public String getEmail() {
