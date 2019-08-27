@@ -61,13 +61,15 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/v2/api-docs",
-                                   "/configuration/ui",
-                                   "/swagger-resources",
-                                   "/configuration/security",
-                                   "/swagger-ui.html",
-                                   "/webjars/**",
-                                   "/csrf");
+        web.ignoring().antMatchers("/", 
+        							"/api/auth/login",
+        							"/v2/api-docs",
+        							"/configuration/ui",
+        							"/swagger-resources",
+        							"/configuration/security",
+        							"/swagger-ui.html",
+        							"/webjars/**",
+                                   	"/csrf");
     }
     
     @Override
@@ -80,16 +82,17 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         	.and()
             .authorizeRequests()
-            	.antMatchers("/", "/api/auth/login",
-            		"/api/users/register",
-            		"/api/auth/logout",
-            		"/v2/**",
-            		"/configuration/ui",
-            		"/swagger-resources/**",
-            		"/configuration/security",
-            		"/swagger-ui.html",
-            		"/webjars/**",
-            		"/csrf").permitAll()
+            	.antMatchers("/", 
+            					"/api/auth/login",
+            					"/api/users/register",
+            					"/api/auth/logout",
+            					"/v2/**",
+            					"/configuration/ui",
+            					"/swagger-resources/**",
+            					"/configuration/security",
+            					"/swagger-ui.html",
+            					"/webjars/**",
+            					"/csrf").permitAll()
         	.anyRequest().authenticated();
 		
         httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -8,16 +8,19 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.stom.app.jpa.Pacijent;
 import com.stom.app.reportrecords.NoviPacijentiPoAdresiMjesecno;
@@ -67,11 +70,11 @@ public class PacijentRestController {
 		//return pacijentRepository.findAll();
 		return pacijentRepository.findAllByOrderByIdDesc();
 	}
-	
+
 	@CrossOrigin
-	@RequestMapping(value = "pacijentPage", method = RequestMethod.GET)
-	public Page<Pacijent> getPacijent(Pageable p) {	
-		return pacijentRepository.findAll(p);
+	@GetMapping(value = "pacijentPage", params = { "page", "size" })
+	public Page<Pacijent> getPacijent(@RequestParam("page") int page, @RequestParam("size") int size) {		
+		return pacijentRepository.findAll(PageRequest.of(page, size));
 	}
 	
 	@RequestMapping(value = "pacijentImeLike/{ime}Page", method = RequestMethod.GET)
