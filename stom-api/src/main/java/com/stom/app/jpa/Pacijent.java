@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.Date;
 import java.util.Iterator;
@@ -40,32 +42,38 @@ public class Pacijent implements Serializable {
 	@Transient
 	private String lookup;
 	//bi-directional many-to-one association to IzvrsenaIntervencija
-	@OneToMany(mappedBy="pacijent")
+	@OneToMany(mappedBy="pacijent", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<IzvrsenaIntervencija> izvrsenaIntervencijas;
 
 	//bi-directional many-to-one association to PlanRada
-	@OneToMany(mappedBy="pacijent")
+	@OneToMany(mappedBy="pacijent", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<PlanRada> planRadas;
 
 	//bi-directional many-to-one association to Racun
-	@OneToMany(mappedBy="pacijent")
+	@OneToMany(mappedBy="pacijent", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<Racun> racuns;
 
 	//bi-directional many-to-one association to Snimak
-	@OneToMany(mappedBy="pacijent")
+	@OneToMany(mappedBy="pacijent", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<Snimak> snimaks;
 
 	//bi-directional many-to-one association to Termin
-	@OneToMany(mappedBy="pacijent")
+	@OneToMany(mappedBy="pacijent", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<Termin> termins;
 
 	//bi-directional many-to-one association to Zub
-	@OneToMany(mappedBy="pacijent")
+	@OneToMany(mappedBy="pacijent", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<Zub> zubs;
 	

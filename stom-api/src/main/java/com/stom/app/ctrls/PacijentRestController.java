@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import com.stom.app.dtos.response.PacijentDetaljiResponse;
+import com.stom.app.service.IPacijentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,6 +37,9 @@ public class PacijentRestController {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	private IPacijentService _pacijentService;
 	
 	@RequestMapping(value = "pacijentNextId", method = RequestMethod.GET)
 	public int getNextId() {		
@@ -119,4 +124,13 @@ public class PacijentRestController {
 		pacijentRepository.deleteById(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
+
+    @GetMapping("pacijenti/{id}")
+	public ResponseEntity getPacijentDetalji(@PathVariable Integer id) {
+		PacijentDetaljiResponse response = _pacijentService.getPacijentById(id);
+		if (response == null) {
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<PacijentDetaljiResponse>(response, HttpStatus.OK);
+	}
 }
